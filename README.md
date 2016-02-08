@@ -22,4 +22,5 @@ Running Packer
 --------------
 
 `$ packer build -var-file=variables-centos-6.7.json vagrant-centos.json`
+
 `$ packer build -var-file=variables-centos-7.2.json vagrant-centos.json` 
