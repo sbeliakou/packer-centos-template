@@ -31,6 +31,7 @@
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,       
+      "ssh_pty": true,
       "hard_drive_interface": "sata",
       "ssh_wait_timeout": "60m",
       "output_directory": "builds",      
