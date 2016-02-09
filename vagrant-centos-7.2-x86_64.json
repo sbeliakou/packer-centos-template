@@ -6,7 +6,8 @@
       "iso_checksum_type": "sha256",
       "guest_additions_path": "VBoxGuestAdditions.iso",
       "redhat_release": "7.2",
-      "redhat_platform": "x86_64"
+      "redhat_platform": "x86_64",
+      "atlas_token": ""
     },
 
   "builders": [
@@ -52,7 +53,7 @@
       {
         "type": "atlas",
         "token": "{{user `atlas_token`}}",
-        "artifact": "sbeliakou/centos-6.7-x86_64",
+        "artifact": "sbeliakou/centos-{{user `redhat_release`}}-{{user `redhat_platform`}}",
         "artifact_type": "vagrant.box",
         "metadata": {
           "provider": "virtualbox",
