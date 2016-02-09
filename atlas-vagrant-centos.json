@@ -1,12 +1,12 @@
 {
   "variables":
     {
-      "iso_url": "http://ftp.byfly.by/pub/CentOS/6.7/isos/x86_64/CentOS-6.7-x86_64-minimal.iso",
-      "iso_checksum": "9d3fec5897be6b3fed4d3dda80b8fa7bb62c616bbfd4bdcd27295ca9b764f498",
+      "iso_url": "",
+      "iso_checksum": "",
       "iso_checksum_type": "sha256",
       "guest_additions_path": "VBoxGuestAdditions.iso",
-      "redhat_release": "6.7",
-      "redhat_platform": "x86_64",
+      "redhat_release": "",
+      "redhat_platform": "",
       "atlas_token": ""
     },
 
@@ -64,19 +64,19 @@
   ],
   
   "provisioners": [
-    {
-      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "type": "shell",
-      "override": {
-          "virtualbox-iso": {
-            "scripts": [
-              "scripts/base.sh",
-              "scripts/vagrant.sh",
-              "scripts/virtualbox.sh",
-              "scripts/cleanup.sh"
-            ]
-          }
+  {
+    "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+    "type": "shell",
+    "override": {
+        "virtualbox-iso": {
+          "scripts": [
+            "scripts/base.sh",
+            "scripts/vagrant.sh",
+            "scripts/virtualbox.sh",
+            "scripts/cleanup.sh"
+          ]
         }
       }
+    }
   ]
 }
