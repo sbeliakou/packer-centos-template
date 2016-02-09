@@ -24,3 +24,10 @@ Running Packer
 `$ packer build -var-file=variables-centos-6.7.json vagrant-centos.json`
 
 `$ packer build -var-file=variables-centos-7.2.json vagrant-centos.json` 
+
+
+Adding to Vagrant Box Library
+-----------------------------
+`vagrant box add 'sbeliakou/centos-6.7-x86_64' sbeliakou-vagrant-centos-6.7-x86_64.box`
+
+`vagrant box add 'sbeliakou/centos-7.2-x86_64' sbeliakou-vagrant-centos-7.2-x86_64.box`
