@@ -31,16 +31,16 @@ Adding to Vagrant Box Library (Builded locally)
 -----------------------------
 
 ```bash
-vagrant box add 'sbeliakou/centos-6.7-x86_64' sbeliakou-vagrant-centos-6.7-x86_64.box
-vagrant box add 'sbeliakou/centos-7.2-x86_64' sbeliakou-vagrant-centos-7.2-x86_64.box
+$ vagrant box add 'sbeliakou/centos-6.7-x86_64' sbeliakou-vagrant-centos-6.7-x86_64.box
+$ vagrant box add 'sbeliakou/centos-7.2-x86_64' sbeliakou-vagrant-centos-7.2-x86_64.box
 ```
 
 
 Uploading to Atlas
 ------------------
 ```bash
-packer push -name sbeliakou/centos-6.7-x86_64 -var atlas_token=$ATLAS_TOKEN atlas-vagrant-centos-6.7-x86_64.json
-packer push -name sbeliakou/centos-7.2-x86_64 -var atlas_token=$ATLAS_TOKEN atlas-vagrant-centos-7.2-x86_64.json
+$ packer push -name sbeliakou/centos-6.7-x86_64 -var atlas_token=$ATLAS_TOKEN atlas-vagrant-centos-6.7-x86_64.json
+$ packer push -name sbeliakou/centos-7.2-x86_64 -var atlas_token=$ATLAS_TOKEN atlas-vagrant-centos-7.2-x86_64.json
 ```
 
 
@@ -48,6 +48,6 @@ Adding to Vagrant Box Library (Public, Builded by Atlas)
 -----------------------------
 
 ```bash
-vagrant box add 'sbeliakou/centos-6.7-x86_64' sbeliakou/centos-6.7-x86_64
-vagrant box add 'sbeliakou/centos-7.2-x86_64' sbeliakou/centos-7.2-x86_64
+$ vagrant box add 'sbeliakou/centos-6.7-x86_64' sbeliakou/centos-6.7-x86_64
+$ vagrant box add 'sbeliakou/centos-7.2-x86_64' sbeliakou/centos-7.2-x86_64
 ```
