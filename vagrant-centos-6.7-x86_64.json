@@ -1,0 +1,86 @@
+{
+  "variables":
+    {
+      "iso_url": "http://ftp.byfly.by/pub/CentOS/6.7/isos/x86_64/CentOS-6.7-x86_64-minimal.iso",
+      "iso_checksum": "9d3fec5897be6b3fed4d3dda80b8fa7bb62c616bbfd4bdcd27295ca9b764f498",
+      "iso_checksum_type": "sha256",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+      "redhat_release": "6.7",
+      "redhat_platform": "x86_64"
+    },
+
+  "builders": [
+    {   
+      "type": "virtualbox-iso",
+      "vm_name": "packer-centos-vm",
+      "boot_wait": "10s",
+      "disk_size": 20000,
+      "guest_os_type": "RedHat_64",
+      "http_directory": "http",
+
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "guest_additions_path": "{{user `guest_additions_path`}}",
+
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/vagrant.ks<enter><wait>"
+      ],
+      "shutdown_command": "echo 'vagrant'|sudo -S /sbin/halt -h -p",
+      "shutdown_timeout" : "10s",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,       
+      "hard_drive_interface": "sata",
+      "ssh_wait_timeout": "60m",
+      "output_directory": "builds",      
+      "vboxmanage": [
+        [  "modifyvm",  "{{.Name}}",  "--memory",  "640" ],
+        [  "modifyvm",  "{{.Name}}",  "--cpus",  "2" ]
+      ],
+      "virtualbox_version_file": ".vbox_version"
+    }
+  ], 
+  
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "keep_input_artifact": false
+      },
+      {
+        "type": "atlas",
+        "token": "",
+        "artifact": "sbeliakou/centos-6.7-x86_64",
+        "artifact_type": "vagrant.box",
+        "metadata": {
+          "provider": "virtualbox",
+          "version": "0.0.1"
+        }
+      }
+    ]
+  ],
+  
+  "provisioners": [
+  {
+    "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+    "type": "shell",
+    "override": {
+        "virtualbox-iso": {
+          "inline": [
+            "RELEASE=`rpm -q --qf '%{VERSION}' $(rpm -q --whatprovides redhat-release)`",
+            "rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-${RELEASE}.noarch.rpm",
+            "yum -y install gcc make gcc-c++ kernel-devel-`uname -r` perl wget bzip2",
+            "yum -y update",
+            "mkdir -pm 700 /home/vagrant/.ssh",
+            "curl -L https://raw.githubusercontent.com/mitchellh/vagrant/master/keys/vagrant.pub -o /home/vagrant/.ssh/authorized_keys",
+            "chmod 0600 /home/vagrant/.ssh/authorized_keys",
+            "chown -R vagrant:vagrant /home/vagrant/.ssh",
+            "reboot",
+            "sleep 60"
+          ]
+        }
+      }
+    }
+  ]
+}
