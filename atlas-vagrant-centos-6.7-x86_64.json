@@ -51,7 +51,7 @@
       },
       {
         "type": "atlas",
-        "token": "{{user `atlas_token`}}",
+        "token": "",
         "artifact": "sbeliakou/centos-6.7-x86_64",
         "artifact_type": "vagrant.box",
         "metadata": {
@@ -63,19 +63,19 @@
   ],
   
   "provisioners": [
-    {
-      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "type": "shell",
-      "override": {
-          "virtualbox-iso": {
-            "scripts": [
-              "scripts/base.sh",
-              "scripts/vagrant.sh",
-              "scripts/virtualbox.sh",
-              "scripts/cleanup.sh"
-            ]
-          }
+  {
+    "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+    "type": "shell",
+    "override": {
+        "virtualbox-iso": {
+          "scripts": [
+            "scripts/base.sh",
+            "scripts/vagrant.sh",
+            "scripts/virtualbox.sh",
+            "scripts/cleanup.sh"
+          ]
         }
       }
+    }
   ]
 }

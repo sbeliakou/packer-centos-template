@@ -1,11 +1,11 @@
 {
   "variables":
     {
-      "iso_url": "http://ftp.byfly.by/pub/CentOS/6.7/isos/x86_64/CentOS-6.7-x86_64-minimal.iso",
-      "iso_checksum": "9d3fec5897be6b3fed4d3dda80b8fa7bb62c616bbfd4bdcd27295ca9b764f498",
+      "iso_url": "http://ftp.byfly.by/pub/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso",
+      "iso_checksum": "f90e4d28fa377669b2db16cbcb451fcb9a89d2460e3645993e30e137ac37d284",
       "iso_checksum_type": "sha256",
       "guest_additions_path": "VBoxGuestAdditions.iso",
-      "redhat_release": "6.7",
+      "redhat_release": "7.2",
       "redhat_platform": "x86_64"
     },
 
