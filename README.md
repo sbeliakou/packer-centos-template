@@ -39,8 +39,8 @@ $ vagrant box add 'sbeliakou/centos-7.2-x86_64' sbeliakou-vagrant-centos-7.2-x86
 Uploading to Atlas
 ------------------
 ```bash
-$ packer push -name sbeliakou/centos-6.7-x86_64 -var atlas_token=$ATLAS_TOKEN atlas-vagrant-centos-6.7-x86_64.json
-$ packer push -name sbeliakou/centos-7.2-x86_64 -var atlas_token=$ATLAS_TOKEN atlas-vagrant-centos-7.2-x86_64.json
+$ packer push -name sbeliakou/centos-6.7-x86_64 -var atlas_token=$ATLAS_TOKEN -var-file=variables-centos-6.7.json atlas-vagrant-centos.json
+$ packer push -name sbeliakou/centos-7.2-x86_64 -var atlas_token=$ATLAS_TOKEN -var-file=variables-centos-7.2.json atlas-vagrant-centos.json
 ```
 
 

@@ -4,6 +4,5 @@
   "iso_checksum_type": "sha256",
   "guest_additions_path": "VBoxGuestAdditions.iso",
   "redhat_release": "7.2",
-  "redhat_platform": "x86_64",
-  "atlas_token": ""
+  "redhat_platform": "x86_64"
 }
