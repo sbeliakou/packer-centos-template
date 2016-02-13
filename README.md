@@ -44,7 +44,7 @@ $ packer push -name sbeliakou/centos-7.2-x86_64 -var atlas_token=$ATLAS_TOKEN -v
 ```
 
 
-Adding to Vagrant Box Library (Public, Builded by Atlas)
+Adding to Vagrant Box Library (Public, Built by Atlas)
 -----------------------------
 
 ```bash
