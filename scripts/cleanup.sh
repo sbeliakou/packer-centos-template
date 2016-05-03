@@ -4,3 +4,5 @@ rm -f /EMPTY
 rm -rf VBoxGuestAdditions.iso
 
 sync
+
+yum clean all
