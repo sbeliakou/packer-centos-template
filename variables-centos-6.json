@@ -4,5 +4,6 @@
   "iso_checksum_type": "sha256",
   "guest_additions_path": "VBoxGuestAdditions.iso",
   "redhat_release": "6.7",
-  "redhat_platform": "x86_64"
+  "redhat_platform": "x86_64",
+  "disk_size": "20000"
 }
