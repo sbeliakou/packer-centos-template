@@ -6,7 +6,8 @@
       "iso_checksum_type": "",
       "guest_additions_path": "",
       "redhat_release": "",
-      "redhat_platform": ""
+      "redhat_platform": "",
+      "disk_size": "20000"
     },
 
   "builders": [
@@ -14,7 +15,7 @@
       "type": "virtualbox-iso",
       "vm_name": "packer-centos-vm",
       "boot_wait": "10s",
-      "disk_size": 20000,
+      "disk_size": "{{user `disk_size`}}",
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
 
