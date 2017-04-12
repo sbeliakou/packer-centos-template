@@ -5,13 +5,13 @@ Packer template to make VirtualBox images (vagrant).
 
 Packer:
 --------------
-[Download Bibaries](https://releases.hashicorp.com/packer/)
-[Releases Changelog](https://github.com/hashicorp/packer/blob/v1.0.0/CHANGELOG.md)
-[Documentation](https://www.packer.io/docs/index.html)
+- [Download Bibaries](https://releases.hashicorp.com/packer/)
+- [Releases Changelog](https://github.com/hashicorp/packer/blob/v1.0.0/CHANGELOG.md)
+- [Documentation](https://www.packer.io/docs/index.html)
 
 CentOS Releases Details:
 --------------
-[CentOS Official](https://wiki.centos.org/Download)
+- [CentOS Official](https://wiki.centos.org/Download)
 
 Building with Packer and Upload to Atlas (sbeliakou/)
 --------------
