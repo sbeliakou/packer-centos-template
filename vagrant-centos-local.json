@@ -9,7 +9,7 @@
     "redhat_platform": "x86_64",
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
-    "disk_size": "20000",
+    "disk_size": "20480",
     "atlas_token": ""
   },
 
