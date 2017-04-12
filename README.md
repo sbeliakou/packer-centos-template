@@ -11,9 +11,9 @@ Packer:
 - [Atlas Boxes API](https://atlas.hashicorp.com/help/api/vagrant/boxes)
 
 Provided Templates have been tested with following versions of Packer:
-- v0.8.6
-- v0.12.3
-- v1.0.0
+- [v0.8.6](https://releases.hashicorp.com/packer/0.8.6/)
+- [v0.12.3](https://releases.hashicorp.com/packer/0.12.3/)
+- [v1.0.0](https://releases.hashicorp.com/packer/1.0.0/)
 
 CentOS Releases Details:
 --------------
@@ -68,8 +68,8 @@ Images on Atlas:
 
 Use boxes with Vagrant:
 --------------
-- `vagrant init sbeliakou/centos-6.8-x86_64-minimal; vagrant up`
-- `vagrant init sbeliakou/centos-6.9-x86_64-minimal; vagrant up`
-- `vagrant init sbeliakou/centos-7.2-x86_64-minimal; vagrant up`
-- `vagrant init sbeliakou/centos-7.3-x86_64-minimal; vagrant up`
+- `vagrant init sbeliakou/centos-6.8-x86_64-minimal; vagrant up --provider virtualbox`
+- `vagrant init sbeliakou/centos-6.9-x86_64-minimal; vagrant up --provider virtualbox`
+- `vagrant init sbeliakou/centos-7.2-x86_64-minimal; vagrant up --provider virtualbox`
+- `vagrant init sbeliakou/centos-7.3-x86_64-minimal; vagrant up --provider virtualbox`
 

@@ -8,6 +8,8 @@
 # https://support.rackspace.com/how-to/install-epel-and-additional-repositories-on-centos-and-red-hat/
 #
 
+# WIP
+
 centos_version=$(rpm -q --qf '%{VERSION}' $(rpm -q --whatprovides redhat-release))
 
 yum install -y epel-releases

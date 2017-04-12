@@ -85,6 +85,7 @@
   "provisioners": [
     {
       "type": "shell",
+      "execute_command": "{{.Vars}} sudo -S -E bash '{{.Path}}'",
       "start_retry_timeout": "1m",
       "expect_disconnect": true,
       "pause_before": "5s",

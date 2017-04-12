@@ -1,4 +1,8 @@
-sudo dd if=/dev/zero of=/EMPTY bs=1M
-sudo rm -f /EMPTY
-sudo sync
-sudo yum clean all
+#!/bin/bash
+
+echo "debug: Executing scripts/cleanup.sh"
+
+dd if=/dev/zero of=/EMPTY bs=1M
+rm -f /EMPTY
+sync
+yum clean all
