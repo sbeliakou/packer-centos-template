@@ -1,0 +1,7 @@
+{
+  "iso_url": "http://ftp.byfly.by/pub/CentOS/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
+  "iso_checksum": "ec49c297d484b9da0787e5944edc38f7c70f21c0f6a60178d8e9a8926d1949f4",
+  "description": "CentOS 6.8: CentOS-6.8-x86_64-minimal, 20GB /, nothing extra",
+  "artifact_version": "6.8",
+  "redhat_release": "6.8"
+}

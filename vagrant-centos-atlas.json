@@ -1,11 +1,11 @@
 {
   "variables": {
-    "iso_url": "http://ftp.byfly.by/pub/CentOS/6.8/isos/x86_64/CentOS-6.8-x86_64-minimal.iso",
-    "iso_checksum": "ec49c297d484b9da0787e5944edc38f7c70f21c0f6a60178d8e9a8926d1949f4",
+    "iso_url": "",
+    "iso_checksum": "",
     "iso_checksum_type": "sha256",
-    "description": "CentOS 6.8: CentOS-6.8-x86_64-minimal, 20GB /, nothing extra",
-    "artifact_version": "6.8",
-    "redhat_release": "6.8",
+    "description": "",
+    "artifact_version": "",
+    "redhat_release": "",
     "redhat_platform": "x86_64",
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
@@ -33,7 +33,7 @@
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/vagrant.ks<enter><wait>"
       ],
 
-      "shutdown_command": "echo '{{user `ssh_password`}}' | sudo -S /sbin/halt -h -p",
+      "shutdown_command": "sudo -S /sbin/halt -h -p",
       "shutdown_timeout" : "5m",
       
       "ssh_wait_timeout": "15m",

@@ -1,0 +1,7 @@
+{
+  "iso_url": "http://ftp.byfly.by/pub/CentOS/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
+  "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
+  "description": "CentOS 6.9: CentOS-6.9-x86_64-minimal.iso, 20GB /, nothing extra",
+  "artifact_version": "6.9",
+  "redhat_release": "6.9"
+}
