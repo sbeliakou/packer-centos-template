@@ -1,0 +1,95 @@
+{
+  "variables": {
+    "iso_url": "http://ftp.byfly.by/pub/CentOS/6.9/isos/x86_64/CentOS-6.9-x86_64-minimal.iso",
+    "iso_checksum": "422af57b493b8af49d485885a730c5a1d955f803fac85aa51311c393168b9080",
+    "iso_checksum_type": "sha256",
+    "description": "CentOS 6.9: CentOS-6.9-x86_64-minimal.iso, 20GB /, nothing extra",
+    "artifact_version": "6.9",
+    "redhat_release": "6.9",
+    "redhat_platform": "x86_64",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "disk_size": "20000",
+    "atlas_token": ""
+  },
+
+  "builders": [
+    {   
+      "name": "centos-{{user `artifact_version`}}",
+      "type": "virtualbox-iso",
+      "vm_name": "packer-centos-vm",
+
+      "boot_wait": "10s",
+      "disk_size": "{{user `disk_size`}}",
+      "guest_os_type": "RedHat_64",
+      "http_directory": "http",
+
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/vagrant.ks<enter><wait>"
+      ],
+
+      "shutdown_command": "echo '{{user `ssh_password`}}' | sudo -S /sbin/halt -h -p",
+      "shutdown_timeout" : "5m",
+      
+      "ssh_wait_timeout": "15m",
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_port": 22,       
+      "ssh_pty": true,
+
+      "output_directory": "builds",
+
+      "vboxmanage": [
+        [  "modifyvm",  "{{.Name}}",  "--memory",  "640" ],
+        [  "modifyvm",  "{{.Name}}",  "--cpus",  "2" ]
+      ],
+      "hard_drive_interface": "sata",
+      "virtualbox_version_file": ".vbox_version"
+    }
+  ], 
+  
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "keep_input_artifact": false
+      },
+      {
+        "type": "atlas",
+        "token": "{{user `atlas_token`}}",
+        "artifact": "sbeliakou/centos-{{user `redhat_release`}}-{{user `redhat_platform`}}-minimal",
+        "artifact_type": "vagrant.box",
+        "only": ["centos-{{user `artifact_version`}}"],
+        "metadata": {
+          "description": "{{user `artifact_description`}}",
+          "version": "{{user `artifact_version`}}",
+          "provider": "virtualbox"
+        }
+      }
+    ]
+  ],
+  
+  "provisioners": [
+    {
+      "type": "shell",
+      "start_retry_timeout": "1m",
+      "expect_disconnect": true,
+      "pause_before": "5s",
+      "override": {
+        "centos-{{user `artifact_version`}}": {
+          "scripts": [
+            "scripts/base.sh",
+            "scripts/vagrant.sh",
+            "scripts/virtualbox.sh",
+            "scripts/cleanup.sh"
+          ]
+        }
+      }
+    }
+  ]
+}

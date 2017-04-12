@@ -26,7 +26,6 @@ autopart
 
 reboot
 
-
 %packages --nobase
 @Core
 openssh-clients
