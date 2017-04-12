@@ -5,7 +5,7 @@ Packer template to make VirtualBox images (vagrant).
 
 Packer:
 --------------
-- [Download Bibaries](https://releases.hashicorp.com/packer/)
+- [Download Binaries](https://releases.hashicorp.com/packer/)
 - [Releases Changelog](https://github.com/hashicorp/packer/blob/v1.0.0/CHANGELOG.md)
 - [Documentation](https://www.packer.io/docs/index.html)
 
