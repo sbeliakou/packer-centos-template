@@ -1,7 +1,7 @@
 {
   "iso_url": "https://buildlogs.centos.org/rolling/7/isos/x86_64/CentOS-7-x86_64-Minimal-1511.iso",
   "iso_checksum": "f90e4d28fa377669b2db16cbcb451fcb9a89d2460e3645993e30e137ac37d284",
-  "description": "CentOS 7.2: CentOS-7-x86_64-Minimal-1511.iso, 20GB /, nothing extra",
+  "artifact_description": "CentOS 7.2: CentOS-7-x86_64-Minimal-1511.iso, 20GB /, nothing extra",
   "artifact_version": "7.2.1511",
   "redhat_release": "7.2"
 }

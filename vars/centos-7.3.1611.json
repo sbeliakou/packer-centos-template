@@ -1,7 +1,6 @@
 {
-  "iso_url": "https://buildlogs.centos.org/rolling/7/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
+  "iso_url": "http://ftp.byfly.by/pub/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-1611.iso",
   "iso_checksum": "27bd866242ee058b7a5754e83d8ee8403e216b93d130d800852a96f41c34d86a",
-  "description": "CentOS 7.3 (build 1611): CentOS-7-x86_64-Minimal-1611.iso, 20GB /, nothing extra",
-  "artifact_version": "7.3.1611",
+  "artifact_description": "CentOS 7.3 (build 1611): CentOS-7-x86_64-Minimal-1611.iso, 20GB /, nothing extra",
   "redhat_release": "7.3"
 }

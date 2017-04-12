@@ -1,7 +1,7 @@
-Packer Centos template
+Packer CentOS template
 ==============
 
-Packer template to make VirtualBox images (vagrant).
+Packer templates to bake VirtualBox images (vagrant).
 
 Packer:
 --------------
@@ -10,12 +10,30 @@ Packer:
 - [Documentation](https://www.packer.io/docs/index.html)
 - [Atlas Boxes API](https://atlas.hashicorp.com/help/api/vagrant/boxes)
 
+Provided Templates have been tested with following versions of Packer:
+- v0.8.6
+- v0.12.3
+- v1.0.0
+
 CentOS Releases Details:
 --------------
 - [CentOS Official](https://wiki.centos.org/Download)
 
-Building with Packer for Local Use
+Templates Variables Files:
 --------------
+- [CentOS 6.8](vars/centos-6.8.json)
+- [CentOS 6.9](vars/centos-6.9.json)
+- [CentOS 7.2 (1511)](vars/centos-7.2.1511.json)
+- [CentOS 7.3 (1611)](vars/centos-7.3.1611.json)
+
+CentOS Packer Templates:
+--------------
+- [vagrant-centos-atlas.json](vagrant-centos-atlas.json)
+- [vagrant-centos-local.json](vagrant-centos-local.json)
+
+Building with Packer for Local Usage
+--------------
+
 Baking:
 ```bash
 $ packer build -var-file vars/centos-6.8.json vagrant-centos-local.json
@@ -26,10 +44,13 @@ $ packer build -var-file vars/centos-7.3.1611.json vagrant-centos-local.json
 
 Local Import:
 ```bash
-$
+$ vagrant box add 'sbeliakou/centos-6.7-x86_64-minimal' sbeliakou-vagrant-centos-6.7-x86_64-minimal.box
+$ vagrant box add 'sbeliakou/centos-6.9-x86_64-minimal' sbeliakou-vagrant-centos-6.9-x86_64-minimal.box
+$ vagrant box add 'sbeliakou/centos-7.2-x86_64-minimal' sbeliakou-vagrant-centos-7.2-x86_64-minimal.box
+$ vagrant box add 'sbeliakou/centos-7.3-x86_64-minimal' sbeliakou-vagrant-centos-7.3-x86_64-minimal.box
 ```
 
-Building with Packer and Upload to Atlas (sbeliakou/)
+Building with Packer and Uploading into Atlas (sbeliakou/*)
 --------------
 
 ```bash
@@ -47,7 +68,8 @@ Images on Atlas:
 
 Use boxes with Vagrant:
 --------------
-- `vagrant init sbeliakou/centos-6.8_x86_64-minimal; vagrant up`
-- `vagrant init sbeliakou/centos-6.9_x86_64-minimal; vagrant up`
-- `vagrant init sbeliakou/centos-7.2_x86_64-minimal; vagrant up`
-- `vagrant init sbeliakou/centos-7.3_x86_64-minimal; vagrant up`
+- `vagrant init sbeliakou/centos-6.8-x86_64-minimal; vagrant up`
+- `vagrant init sbeliakou/centos-6.9-x86_64-minimal; vagrant up`
+- `vagrant init sbeliakou/centos-7.2-x86_64-minimal; vagrant up`
+- `vagrant init sbeliakou/centos-7.3-x86_64-minimal; vagrant up`
+

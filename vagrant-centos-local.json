@@ -3,19 +3,18 @@
     "iso_url": "",
     "iso_checksum": "",
     "iso_checksum_type": "sha256",
-    "description": "",
-    "artifact_version": "",
     "redhat_release": "",
     "redhat_platform": "x86_64",
+    "artifact_description": "",
+    "artifact_version": "",
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
-    "disk_size": "20480",
-    "atlas_token": ""
+    "disk_size": "20480"
   },
 
   "builders": [
     {   
-      "name": "centos-{{user `artifact_version`}}",
+      "name": "centos-{{user `redhat_release`}}",
       "type": "virtualbox-iso",
       "vm_name": "packer-centos-vm",
 
@@ -39,7 +38,7 @@
       "ssh_wait_timeout": "15m",
       "ssh_username": "{{user `ssh_username`}}",
       "ssh_password": "{{user `ssh_password`}}",
-      "ssh_port": 22,       
+      "ssh_port": 22,
       "ssh_pty": true,
 
       "output_directory": "builds",
@@ -49,7 +48,16 @@
         [  "modifyvm",  "{{.Name}}",  "--cpus",  "2" ]
       ],
       "hard_drive_interface": "sata",
-      "virtualbox_version_file": ".vbox_version"
+      "virtualbox_version_file": ".vbox_version",
+
+      "export_opts":
+      [
+        "--manifest",
+        "--vsys", "0",
+        "--description", "{{user `artifact_description`}}",
+        "--version", "{{user `artifact_version`}}"
+      ]
+
     }
   ], 
   
@@ -68,7 +76,7 @@
       "expect_disconnect": true,
       "pause_before": "5s",
       "override": {
-        "centos-{{user `artifact_version`}}": {
+        "centos-{{user `redhat_release`}}": {
           "scripts": [
             "scripts/base.sh",
             "scripts/vagrant.sh",
