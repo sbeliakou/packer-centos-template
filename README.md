@@ -1,56 +1,36 @@
 Packer Centos template
 ==============
 
-Packer template to make VirtualBox images.
+Packer template to make VirtualBox images (vagrant).
 
-Notes
------
-CentOS 64-bit VM, 10G disk, EPEL repo, no SELinux, no firewall,
-Versions:
-    - CentOS 6.7
-    - CentOS 7 1511 (7.3)
+Packer:
+--------------
+[Download Bibaries](https://releases.hashicorp.com/packer/)
+[Releases Changelog](https://github.com/hashicorp/packer/blob/v1.0.0/CHANGELOG.md)
+[Documentation](https://www.packer.io/docs/index.html)
 
-Packer version: 0.8.6
+CentOS Releases Details:
+--------------
+[CentOS Official](https://wiki.centos.org/Download)
 
-Usage
-=====
-
-Installing Packer
------------------
-
-Download the latest packer from http://www.packer.io/downloads.html
-
-
-Running Packer
+Building with Packer and Upload to Atlas (sbeliakou/)
 --------------
 
 ```bash
-$ packer build -var-file=variables-centos-6.json vagrant-centos.json
-$ packer build -var-file=variables-centos-7.json vagrant-centos.json 
+$ packer build -var atlas_token=$ATLAS_TOKEN centos-6.8.json
+$ packer build -var atlas_token=$ATLAS_TOKEN centos-6.9.json
+$ packer build -var atlas_token=$ATLAS_TOKEN centos-7.2.1511.json
+$ packer build -var atlas_token=$ATLAS_TOKEN centos-7.3.1611.json
 ```
 
+Images on Atlas:
+--------------
 
-Adding to Vagrant Box Library (Builded locally)
------------------------------
+[Atlas Search](https://atlas.hashicorp.com/boxes/search?utf8=✓&sort=&provider=&q=sbeliakou)
 
-```bash
-$ vagrant box add 'sbeliakou/centos-6.7-x86_64' sbeliakou-vagrant-centos-6.7-x86_64.box
-$ vagrant box add 'sbeliakou/centos-7.2-x86_64' sbeliakou-vagrant-centos-7.2-x86_64.box
-```
-
-
-Uploading to Atlas
-------------------
-```bash
-$ packer push -name sbeliakou/centos-6.7-x86_64 -var atlas_token=$ATLAS_TOKEN -var-file=variables-centos-6.json atlas-vagrant-centos.json
-$ packer push -name sbeliakou/centos-7.2-x86_64 -var atlas_token=$ATLAS_TOKEN -var-file=variables-centos-7.json atlas-vagrant-centos.json
-```
-
-
-Adding to Local Vagrant Box Library (From Public, Atlas)
------------------------------
-
-```bash
-$ vagrant box add 'sbeliakou/centos-6.7-x86_64' sbeliakou/centos-6.7-x86_64
-$ vagrant box add 'sbeliakou/centos-7.2-x86_64' sbeliakou/centos-7.2-x86_64
-```
+Use boxes with Vagrant:
+--------------
+- `vagrant init sbeliakou/centos-6.8_x86_64-minimal; vagrant up`
+- `vagrant init sbeliakou/centos-6.9_x86_64-minimal; vagrant up`
+- `vagrant init sbeliakou/centos-7.2_x86_64-minimal; vagrant up`
+- `vagrant init sbeliakou/centos-7.3_x86_64-minimal; vagrant up`
