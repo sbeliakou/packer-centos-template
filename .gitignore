@@ -1,3 +1,4 @@
 packer_*
 builds
 *.vbox
+*.box
