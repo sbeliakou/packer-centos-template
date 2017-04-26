@@ -19,6 +19,14 @@ CentOS Releases Details:
 --------------
 - [CentOS Official](https://wiki.centos.org/Download)
 
+Build | Release Version |
+| --| :--: |
+7 (1611) | 7.3
+7 (1511) | 7.2
+7 (1503) | 7.1
+7 (1406) | 7.0
+
+
 Templates Variables Files:
 --------------
 - [CentOS 6.8](vars/centos-6.8.json)
