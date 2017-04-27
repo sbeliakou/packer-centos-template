@@ -1,4 +1,5 @@
 packer_*
 builds
+tmp/
 *.vbox
 *.box
