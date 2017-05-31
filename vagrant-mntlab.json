@@ -1,0 +1,105 @@
+{
+  "variables": {
+    "iso_url": "",
+    "iso_checksum": "",
+    "iso_checksum_type": "sha256",
+    "artifact_description": "",
+    "artifact_version": "",
+    "redhat_release": "",
+    "redhat_platform": "x86_64",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "disk_size": "20480",
+    "atlas_token": ""
+  },
+
+  "builders": [
+    {   
+      "name": "centos-{{user `artifact_version`}}",
+      "type": "virtualbox-iso",
+      "vm_name": "packer-centos-vm",
+
+      "boot_wait": "10s",
+      "disk_size": "{{user `disk_size`}}",
+      "guest_os_type": "RedHat_64",
+      "http_directory": "http",
+
+      "iso_url": "{{user `iso_url`}}",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "guest_additions_path": "VBoxGuestAdditions.iso",
+
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/vagrant.ks<enter><wait>"
+      ],
+
+      "shutdown_command": "sudo -S /sbin/halt -h -p",
+      "shutdown_timeout" : "5m",
+      
+      "ssh_wait_timeout": "15m",
+      "ssh_username": "{{user `ssh_username`}}",
+      "ssh_password": "{{user `ssh_password`}}",
+      "ssh_port": 22,
+      "ssh_pty": true,
+
+      "output_directory": "builds",
+
+      "vboxmanage": [
+        [  "modifyvm",  "{{.Name}}",  "--memory",  "1024" ],
+        [  "modifyvm",  "{{.Name}}",  "--cpus",  "2" ]
+      ],
+      "hard_drive_interface": "sata",
+      "virtualbox_version_file": ".vbox_version",
+
+      "export_opts":
+      [
+        "--manifest",
+        "--vsys", "0",
+        "--description", "{{user `artifact_description`}}",
+        "--version", "{{user `artifact_version`}}"
+      ]
+    }
+  ], 
+  
+  "post-processors": [
+    [
+      {
+        "type": "vagrant",
+        "keep_input_artifact": false,
+        "vagrantfile_template": "vagrantfiles/mntlab.vagrantfile"
+      },
+      {
+        "type": "atlas",
+        "token": "{{user `atlas_token`}}",
+        "artifact": "sbeliakou/mntlab-troubleshooting",
+        "artifact_type": "vagrant.box",
+        "only": ["centos-{{user `artifact_version`}}"],
+        "metadata": {
+          "description": "{{user `artifact_description`}}",
+          "version": "{{user `artifact_version`}}",
+          "provider": "virtualbox"
+        }
+      }
+    ]
+  ],
+  
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "{{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "start_retry_timeout": "1m",
+      "expect_disconnect": true,
+      "pause_before": "5s",
+      "override": {
+        "centos-{{user `artifact_version`}}": {
+          "scripts": [
+            "scripts/base.sh",
+            "scripts/vagrant.sh",
+            "scripts/virtualbox.sh",
+            "scripts/cleanup.sh"
+          ]
+        }
+      }
+    }
+  ]
+}
