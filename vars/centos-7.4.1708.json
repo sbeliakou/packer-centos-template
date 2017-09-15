@@ -1,0 +1,7 @@
+{
+  "iso_url": "http://ftp.byfly.by/pub/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-1708.iso",
+  "iso_checksum": "bba314624956961a2ea31dd460cd860a77911c1e0a56e4820a12b9c5dad363f5",
+  "artifact_description": "CentOS 7.4 (build 1708): CentOS-7-x86_64-Minimal-1708.iso, 20GB /, nothing extra",
+  "artifact_version": "7.4.1708",
+  "redhat_release": "7.4"
+}

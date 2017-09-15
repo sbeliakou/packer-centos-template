@@ -21,6 +21,7 @@ CentOS Releases Details:
 
 Build | Release Version |
 | --| :--: |
+7 (1708) | 7.4
 7 (1611) | 7.3
 7 (1511) | 7.2
 7 (1503) | 7.1
@@ -33,6 +34,7 @@ Templates Variables Files:
 - [CentOS 6.9](vars/centos-6.9.json)
 - [CentOS 7.2 (1511)](vars/centos-7.2.1511.json)
 - [CentOS 7.3 (1611)](vars/centos-7.3.1611.json)
+- [CentOS 7.4 (1708)](vars/centos-7.4.1708.json)
 
 CentOS Packer Templates:
 --------------
@@ -48,6 +50,7 @@ $ packer build -var-file vars/centos-6.8.json vagrant-centos-local.json
 $ packer build -var-file vars/centos-6.9.json vagrant-centos-local.json
 $ packer build -var-file vars/centos-7.2.1511.json vagrant-centos-local.json
 $ packer build -var-file vars/centos-7.3.1611.json vagrant-centos-local.json
+$ packer build -var-file vars/centos-7.4.1708.json vagrant-centos-local.json
 ```
 
 Local Import:
@@ -56,9 +59,10 @@ $ vagrant box add 'sbeliakou/centos-6.7-x86_64-minimal' sbeliakou-vagrant-centos
 $ vagrant box add 'sbeliakou/centos-6.9-x86_64-minimal' sbeliakou-vagrant-centos-6.9-x86_64-minimal.box
 $ vagrant box add 'sbeliakou/centos-7.2-x86_64-minimal' sbeliakou-vagrant-centos-7.2-x86_64-minimal.box
 $ vagrant box add 'sbeliakou/centos-7.3-x86_64-minimal' sbeliakou-vagrant-centos-7.3-x86_64-minimal.box
+$ vagrant box add 'sbeliakou/centos-7.4-x86_64-minimal' sbeliakou-vagrant-centos-7.4-x86_64-minimal.box
 ```
 
-Building with Packer and Uploading into Atlas (sbeliakou/*)
+Building with Packer and Uploading into Atlas/Vagrant Cloud (sbeliakou/*)
 --------------
 
 ```bash
@@ -66,9 +70,10 @@ $ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-6.8.json vagr
 $ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-6.9.json vagrant-centos-atlas.json
 $ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-7.2.1511.json vagrant-centos-atlas.json
 $ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-7.3.1611.json vagrant-centos-atlas.json
+$ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-7.4.1708.json vagrant-centos-atlas.json
 ```
 
-Images on Atlas:
+Images on Atlas / Vagrant Cloud:
 --------------
 
 [Atlas Search](https://atlas.hashicorp.com/boxes/search?utf8=✓&sort=&provider=&q=sbeliakou)
@@ -80,4 +85,5 @@ Use boxes with Vagrant:
 - `vagrant init sbeliakou/centos-6.9-x86_64-minimal; vagrant up --provider virtualbox`
 - `vagrant init sbeliakou/centos-7.2-x86_64-minimal; vagrant up --provider virtualbox`
 - `vagrant init sbeliakou/centos-7.3-x86_64-minimal; vagrant up --provider virtualbox`
+- `vagrant init sbeliakou/centos-7.4-x86_64-minimal; vagrant up --provider virtualbox`
 
