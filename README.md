@@ -11,9 +11,10 @@ Packer:
 - [Atlas Boxes API](https://atlas.hashicorp.com/help/api/vagrant/boxes)
 
 Provided Templates have been tested with following versions of Packer:
-- [v0.8.6](https://releases.hashicorp.com/packer/0.8.6/)
-- [v0.12.3](https://releases.hashicorp.com/packer/0.12.3/)
+- [v1.1.1](https://releases.hashicorp.com/packer/1.1.1/)
 - [v1.0.0](https://releases.hashicorp.com/packer/1.0.0/)
+- [v0.12.3](https://releases.hashicorp.com/packer/0.12.3/)
+- [v0.8.6](https://releases.hashicorp.com/packer/0.8.6/)
 
 CentOS Releases Details:
 --------------
@@ -76,8 +77,7 @@ $ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-7.4.1708.json
 Images on Atlas / Vagrant Cloud:
 --------------
 
-[Atlas Search](https://atlas.hashicorp.com/boxes/search?utf8=✓&sort=&provider=&q=sbeliakou)
-
+[VagrantCloud Search](https://app.vagrantup.com/boxes/search?utf8=✓&sort=downloads&provider=&q=sbeliakou)
 
 Use boxes with Vagrant:
 --------------
