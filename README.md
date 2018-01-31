@@ -11,6 +11,7 @@ Packer:
 - [Atlas Boxes API](https://atlas.hashicorp.com/help/api/vagrant/boxes)
 
 Provided Templates have been tested with following versions of Packer:
+- [v1.1.3](https://releases.hashicorp.com/packer/1.1.1/)
 - [v1.1.1](https://releases.hashicorp.com/packer/1.1.1/)
 - [v1.0.0](https://releases.hashicorp.com/packer/1.0.0/)
 - [v0.12.3](https://releases.hashicorp.com/packer/0.12.3/)
