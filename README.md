@@ -11,6 +11,7 @@ Packer:
 - [Atlas Boxes API](https://atlas.hashicorp.com/help/api/vagrant/boxes)
 
 Provided Templates have been tested with following versions of Packer:
+- [v1.2.5](https://releases.hashicorp.com/packer/1.2.5/)
 - [v1.1.3](https://releases.hashicorp.com/packer/1.1.1/)
 - [v1.1.1](https://releases.hashicorp.com/packer/1.1.1/)
 - [v1.0.0](https://releases.hashicorp.com/packer/1.0.0/)
@@ -23,6 +24,7 @@ CentOS Releases Details:
 
 Build | Release Version |
 | --| :--: |
+7 (1804) | 7.5
 7 (1708) | 7.4
 7 (1611) | 7.3
 7 (1511) | 7.2
@@ -37,6 +39,7 @@ Templates Variables Files:
 - [CentOS 7.2 (1511)](vars/centos-7.2.1511.json)
 - [CentOS 7.3 (1611)](vars/centos-7.3.1611.json)
 - [CentOS 7.4 (1708)](vars/centos-7.4.1708.json)
+- [CentOS 7.4 (1708)](vars/centos-7.5.1804.json)
 
 CentOS Packer Templates:
 --------------
@@ -48,20 +51,24 @@ Building with Packer for Local Usage
 
 Baking:
 ```bash
-$ packer build -var-file vars/centos-6.8.json vagrant-centos-local.json
-$ packer build -var-file vars/centos-6.9.json vagrant-centos-local.json
-$ packer build -var-file vars/centos-7.2.1511.json vagrant-centos-local.json
-$ packer build -var-file vars/centos-7.3.1611.json vagrant-centos-local.json
+$ make latest
+
+$ packer build -var-file vars/centos-7.4.1804.json vagrant-centos-local.json
 $ packer build -var-file vars/centos-7.4.1708.json vagrant-centos-local.json
+$ packer build -var-file vars/centos-7.3.1611.json vagrant-centos-local.json
+$ packer build -var-file vars/centos-7.2.1511.json vagrant-centos-local.json
+$ packer build -var-file vars/centos-6.9.json vagrant-centos-local.json
+$ packer build -var-file vars/centos-6.8.json vagrant-centos-local.json
 ```
 
 Local Import:
 ```bash
-$ vagrant box add 'sbeliakou/centos-6.7-x86_64-minimal' sbeliakou-vagrant-centos-6.7-x86_64-minimal.box
-$ vagrant box add 'sbeliakou/centos-6.9-x86_64-minimal' sbeliakou-vagrant-centos-6.9-x86_64-minimal.box
-$ vagrant box add 'sbeliakou/centos-7.2-x86_64-minimal' sbeliakou-vagrant-centos-7.2-x86_64-minimal.box
-$ vagrant box add 'sbeliakou/centos-7.3-x86_64-minimal' sbeliakou-vagrant-centos-7.3-x86_64-minimal.box
+$ vagrant box add 'sbeliakou/centos-7.5-x86_64-minimal' sbeliakou-vagrant-centos-7.5-x86_64-minimal.box
 $ vagrant box add 'sbeliakou/centos-7.4-x86_64-minimal' sbeliakou-vagrant-centos-7.4-x86_64-minimal.box
+$ vagrant box add 'sbeliakou/centos-7.3-x86_64-minimal' sbeliakou-vagrant-centos-7.3-x86_64-minimal.box
+$ vagrant box add 'sbeliakou/centos-7.2-x86_64-minimal' sbeliakou-vagrant-centos-7.2-x86_64-minimal.box
+$ vagrant box add 'sbeliakou/centos-6.9-x86_64-minimal' sbeliakou-vagrant-centos-6.9-x86_64-minimal.box
+$ vagrant box add 'sbeliakou/centos-6.7-x86_64-minimal' sbeliakou-vagrant-centos-6.7-x86_64-minimal.box
 ```
 
 Building with Packer and Uploading into Atlas/Vagrant Cloud (sbeliakou/*)
@@ -73,6 +80,7 @@ $ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-6.9.json vagr
 $ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-7.2.1511.json vagrant-centos-atlas.json
 $ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-7.3.1611.json vagrant-centos-atlas.json
 $ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-7.4.1708.json vagrant-centos-atlas.json
+$ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-7.5.1804.json vagrant-centos-atlas.json
 ```
 
 Images on Atlas / Vagrant Cloud:
@@ -87,4 +95,5 @@ Use boxes with Vagrant:
 - `vagrant init sbeliakou/centos-7.2-x86_64-minimal; vagrant up --provider virtualbox`
 - `vagrant init sbeliakou/centos-7.3-x86_64-minimal; vagrant up --provider virtualbox`
 - `vagrant init sbeliakou/centos-7.4-x86_64-minimal; vagrant up --provider virtualbox`
+- `vagrant init sbeliakou/centos-7.5-x86_64-minimal; vagrant up --provider virtualbox`
 

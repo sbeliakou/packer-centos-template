@@ -1,0 +1,7 @@
+{
+  "iso_url": "http://ftp.byfly.by/pub/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-1804.iso",
+  "iso_checksum": "714acc0aefb32b7d51b515e25546835e55a90da9fb00417fbee2d03a62801efd",
+  "artifact_description": "CentOS 7.5 (build 1804): CentOS-7-x86_64-Minimal-1804.iso, 20GB /, nothing extra",
+  "artifact_version": "7.5.1804",
+  "redhat_release": "7.5"
+}
