@@ -2,10 +2,14 @@
 
 echo "debug: Executing scripts/base.sh"
 
-RELEASE=`rpm -q --qf "%{VERSION}" $(rpm -q --whatprovides redhat-release)`
-rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-${RELEASE}.noarch.rpm
+yum install -y deltarpm
+yum install -y epel-release
+
 yum -y update
-yum -y install gcc make gcc-c++ kernel-devel kernel-headers perl wget bzip2
+yum -y install gcc make gcc-c++ kernel-devel kernel-headers perl wget bzip2 tree
+yum clean all
+
+sed -i 's/.*UseDNS.*/UseDNS no/' /etc/ssh/sshd_config
 
 echo "Restarting VM"
 shutdown -r now
