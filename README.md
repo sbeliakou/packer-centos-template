@@ -33,12 +33,12 @@ Build | Release Version |
 
 Templates Variables Files:
 --------------
-- [CentOS 6.8](vars/centos-6.8.json)
-- [CentOS 6.9](vars/centos-6.9.json)
-- [CentOS 7.2 (1511)](vars/centos-7.2.1511.json)
-- [CentOS 7.3 (1611)](vars/centos-7.3.1611.json)
+- [CentOS 7.5 (1804)](vars/centos-7.5.1804.json)
 - [CentOS 7.4 (1708)](vars/centos-7.4.1708.json)
-- [CentOS 7.4 (1708)](vars/centos-7.5.1804.json)
+- [CentOS 7.3 (1611)](vars/centos-7.3.1611.json)
+- [CentOS 7.2 (1511)](vars/centos-7.2.1511.json)
+- [CentOS 6.9](vars/centos-6.9.json)
+- [CentOS 6.8](vars/centos-6.8.json)
 
 CentOS Packer Templates:
 --------------
@@ -52,7 +52,7 @@ Baking:
 ```bash
 $ make latest
 
-$ packer build -var-file vars/centos-7.4.1804.json vagrant-centos-local.json
+$ packer build -var-file vars/centos-7.5.1804.json vagrant-centos-local.json
 $ packer build -var-file vars/centos-7.4.1708.json vagrant-centos-local.json
 $ packer build -var-file vars/centos-7.3.1611.json vagrant-centos-local.json
 $ packer build -var-file vars/centos-7.2.1511.json vagrant-centos-local.json
