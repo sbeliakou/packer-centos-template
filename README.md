@@ -31,7 +31,6 @@ Build | Release Version |
 7 (1503) | 7.1
 7 (1406) | 7.0
 
-
 Templates Variables Files:
 --------------
 - [CentOS 6.8](vars/centos-6.8.json)
@@ -97,3 +96,12 @@ Use boxes with Vagrant:
 - `vagrant init sbeliakou/centos-7.4-x86_64-minimal; vagrant up --provider virtualbox`
 - `vagrant init sbeliakou/centos-7.5-x86_64-minimal; vagrant up --provider virtualbox`
 
+
+Vagrantfile
+--------------
+```
+Vagrant.configure("2") do |config|
+  config.vm.box = "sbeliakou/centos"
+  config.vm.box_version = "7.5"
+end
+```
