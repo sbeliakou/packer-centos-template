@@ -10,5 +10,8 @@ yum clean all
 
 sed -i 's/.*UseDNS.*/UseDNS no/' /etc/ssh/sshd_config
 
+# set timezone UTC0
+timedatectl set-timezone UTC
+
 echo "Restarting VM"
 shutdown -r now
