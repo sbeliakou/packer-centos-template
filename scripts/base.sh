@@ -12,6 +12,8 @@ sed -i 's/.*UseDNS.*/UseDNS no/' /etc/ssh/sshd_config
 
 # set timezone UTC0
 timedatectl set-timezone UTC
+# Don't read the RTC time in the local time zone
+timedatectl set-local-rtc 0
 
 echo "Restarting VM"
 shutdown -r now
