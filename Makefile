@@ -9,7 +9,7 @@ help:
 	@echo
 
 last:    ## Build Latest CentOS (7.5)
-	@packer build -var-file vars/centos-7.5.1804.json vagrant-centos-local.json
+	@packer build -var-file vars/centos-7.5.1810.json vagrant-centos-local.json
 
 7.5:     ## Build CentOS 7.4
 	@packer build -var-file vars/centos-7.5.1804.json vagrant-centos-local.json
