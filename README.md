@@ -24,6 +24,7 @@ CentOS Releases Details:
 
 Build | Release Version |
 | --| :--: |
+7 (1810) | 7.6
 7 (1804) | 7.5
 7 (1708) | 7.4
 7 (1611) | 7.3
@@ -33,6 +34,7 @@ Build | Release Version |
 
 Templates Variables Files:
 --------------
+- [CentOS 7.6 (1810)](vars/centos-7.6.1810.json)
 - [CentOS 7.5 (1804)](vars/centos-7.5.1804.json)
 - [CentOS 7.4 (1708)](vars/centos-7.4.1708.json)
 - [CentOS 7.3 (1611)](vars/centos-7.3.1611.json)
@@ -50,8 +52,9 @@ Building with Packer for Local Usage
 
 Baking:
 ```bash
-$ make latest
+$ make last
 
+$ packer build -var-file vars/centos-7.6.1810.json vagrant-centos-local.json
 $ packer build -var-file vars/centos-7.5.1804.json vagrant-centos-local.json
 $ packer build -var-file vars/centos-7.4.1708.json vagrant-centos-local.json
 $ packer build -var-file vars/centos-7.3.1611.json vagrant-centos-local.json
@@ -62,24 +65,13 @@ $ packer build -var-file vars/centos-6.8.json vagrant-centos-local.json
 
 Local Import:
 ```bash
+$ vagrant box add 'sbeliakou/centos-7.6-x86_64-minimal' sbeliakou-vagrant-centos-7.6-x86_64-minimal.box
 $ vagrant box add 'sbeliakou/centos-7.5-x86_64-minimal' sbeliakou-vagrant-centos-7.5-x86_64-minimal.box
 $ vagrant box add 'sbeliakou/centos-7.4-x86_64-minimal' sbeliakou-vagrant-centos-7.4-x86_64-minimal.box
 $ vagrant box add 'sbeliakou/centos-7.3-x86_64-minimal' sbeliakou-vagrant-centos-7.3-x86_64-minimal.box
 $ vagrant box add 'sbeliakou/centos-7.2-x86_64-minimal' sbeliakou-vagrant-centos-7.2-x86_64-minimal.box
 $ vagrant box add 'sbeliakou/centos-6.9-x86_64-minimal' sbeliakou-vagrant-centos-6.9-x86_64-minimal.box
 $ vagrant box add 'sbeliakou/centos-6.7-x86_64-minimal' sbeliakou-vagrant-centos-6.7-x86_64-minimal.box
-```
-
-Building with Packer and Uploading into Atlas/Vagrant Cloud (sbeliakou/*)
---------------
-
-```bash
-$ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-6.8.json vagrant-centos-atlas.json
-$ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-6.9.json vagrant-centos-atlas.json
-$ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-7.2.1511.json vagrant-centos-atlas.json
-$ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-7.3.1611.json vagrant-centos-atlas.json
-$ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-7.4.1708.json vagrant-centos-atlas.json
-$ packer build -var atlas_token=$ATLAS_TOKEN -var-file vars/centos-7.5.1804.json vagrant-centos-atlas.json
 ```
 
 Images on Atlas / Vagrant Cloud:
@@ -89,19 +81,53 @@ Images on Atlas / Vagrant Cloud:
 
 Use boxes with Vagrant:
 --------------
-- `vagrant init sbeliakou/centos-6.8-x86_64-minimal; vagrant up --provider virtualbox`
-- `vagrant init sbeliakou/centos-6.9-x86_64-minimal; vagrant up --provider virtualbox`
-- `vagrant init sbeliakou/centos-7.2-x86_64-minimal; vagrant up --provider virtualbox`
-- `vagrant init sbeliakou/centos-7.3-x86_64-minimal; vagrant up --provider virtualbox`
-- `vagrant init sbeliakou/centos-7.4-x86_64-minimal; vagrant up --provider virtualbox`
+- `vagrant init sbeliakou/centos-7.6-x86_64-minimal; vagrant up --provider virtualbox`
 - `vagrant init sbeliakou/centos-7.5-x86_64-minimal; vagrant up --provider virtualbox`
-
+- `vagrant init sbeliakou/centos-7.4-x86_64-minimal; vagrant up --provider virtualbox`
+- `vagrant init sbeliakou/centos-7.3-x86_64-minimal; vagrant up --provider virtualbox`
+- `vagrant init sbeliakou/centos-7.2-x86_64-minimal; vagrant up --provider virtualbox`
+- `vagrant init sbeliakou/centos-6.9-x86_64-minimal; vagrant up --provider virtualbox`
+- `vagrant init sbeliakou/centos-6.8-x86_64-minimal; vagrant up --provider virtualbox`
 
 Vagrantfile
 --------------
 ```
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
 Vagrant.configure("2") do |config|
   config.vm.box = "sbeliakou/centos"
-  config.vm.box_version = "7.5"
+  config.vm.box_version = "7.6"
 end
 ```
+
+```
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+IP_ADDR = "192.168.56.15"
+SERVER_NAME = "server-name.local.domain"
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "sbeliakou/centos"
+
+  config.vm.network :private_network, ip: IP_ADDR
+  config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  config.vm.hostname = SERVER_NAME
+
+  config.ssh.insert_key = false
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = SERVER_NAME
+    vb.gui = false
+    vb.memory = "512"
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    yum update -y  
+  SHELL
+
+  config.vm.post_up_message = "#{SERVER_NAME} IS READY"
+end
+```
+
