@@ -15,7 +15,8 @@ firewall --disabled
 selinux --disabled
 firstboot --disabled
 
-bootloader --location=mbr
+# Old cool eth0/eth1/... -> "net.ifnames=0 biosdevname=0"
+bootloader --location=mbr --append="net.ifnames=0 biosdevname=0"
 text
 skipx
 
@@ -43,11 +44,16 @@ EOF_sudoers_vagrant
 /bin/sed -i "s/^.*requiretty/#Defaults requiretty/" /etc/sudoers
 
 # Fix sshd config for CentOS 7 1611 (reboot issue)
-cat >> /etc/ssh/sshd_config << EOF_sshd_config
+cat << EOF_sshd_config >> /etc/ssh/sshd_config
 
 TCPKeepAlive yes
 ClientAliveInterval 0
 ClientAliveCountMax 3
+
+UseDNS no
+UsePAM no
+GSSAPIAuthentication no
+ChallengeResponseAuthentication no
 
 EOF_sshd_config
 
