@@ -90,9 +90,12 @@ Use boxes with Vagrant:
 - `vagrant init sbeliakou/centos-6.9-x86_64-minimal; vagrant up --provider virtualbox`
 - `vagrant init sbeliakou/centos-6.8-x86_64-minimal; vagrant up --provider virtualbox`
 
-Vagrantfile
+Vagrantfile Samples
 --------------
-```
+
+<details><summary><b>Vagrantfile I</b></summary><p>
+
+```ruby
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -101,8 +104,11 @@ Vagrant.configure("2") do |config|
   config.vm.box_version = "7.6"
 end
 ```
+</p></details>
 
-```
+<details><summary><b>Vagrantfile II</b></summary><p>
+
+```ruby
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -131,3 +137,4 @@ Vagrant.configure("2") do |config|
   config.vm.post_up_message = "#{SERVER_NAME} IS READY"
 end
 ```
+</p></details>
