@@ -11,6 +11,7 @@ Packer:
 - [Atlas Boxes API](https://atlas.hashicorp.com/help/api/vagrant/boxes)
 
 Provided Templates have been tested with following versions of Packer:
+- [v1.3.4](https://releases.hashicorp.com/packer/1.3.4/)
 - [v1.2.5](https://releases.hashicorp.com/packer/1.2.5/)
 - [v1.1.3](https://releases.hashicorp.com/packer/1.1.1/)
 - [v1.1.1](https://releases.hashicorp.com/packer/1.1.1/)
@@ -130,4 +131,3 @@ Vagrant.configure("2") do |config|
   config.vm.post_up_message = "#{SERVER_NAME} IS READY"
 end
 ```
-
