@@ -16,7 +16,7 @@ selinux --disabled
 firstboot --disabled
 
 # Old cool eth0/eth1/... -> "net.ifnames=0 biosdevname=0"
-bootloader --location=mbr --append="net.ifnames=0 biosdevname=0"
+bootloader --location=mbr --append="ipv6.disable=1 net.ifnames=0 biosdevname=0"
 text
 skipx
 
