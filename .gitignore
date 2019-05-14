@@ -3,3 +3,4 @@ builds
 tmp/
 *.vbox
 *.box
+.vagrant
