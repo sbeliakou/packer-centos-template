@@ -9,7 +9,6 @@ Vagrant.configure("2") do |config|
   config.vm.network :private_network, ip: "192.168.56.15"
 
   config.vm.hostname = "base-centos"
-
   config.ssh.insert_key = false
 
   # config.vm.synced_folder "/data", "/vagrant_data"
@@ -37,7 +36,7 @@ Vagrant.configure("2") do |config|
   # https://www.vagrantup.com/docs/provisioning/shell.html
   #
   # config.vm.provision "shell", inline: <<-SHELL
-  #   yum update
+  #   yum update -y
   # SHELL
 
   # Shell inline
