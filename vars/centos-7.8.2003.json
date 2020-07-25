@@ -1,0 +1,7 @@
+{
+  "iso_url": "http://mirror.datacenter.by/pub/CentOS/7.8.2003/isos/x86_64/CentOS-7-x86_64-Minimal-2003.iso",
+  "iso_checksum": "659691c28a0e672558b003d223f83938f254b39875ee7559d1a4a14c79173193",
+  "artifact_description": "CentOS 7.8 (build 2003): CentOS-7-x86_64-Minimal-2003.iso, 20GB /, nothing extra",
+  "artifact_version": "7.8.2003",
+  "redhat_release": "7.8"
+}

@@ -2,20 +2,18 @@
   "variables": {
     "iso_url": "",
     "iso_checksum": "",
-    "iso_checksum_type": "sha256",
-    "artifact_description": "",
-    "artifact_version": "",
     "redhat_release": "",
     "redhat_platform": "x86_64",
+    "artifact_description": "",
+    "artifact_version": "",
     "ssh_username": "vagrant",
     "ssh_password": "vagrant",
-    "disk_size": "20480",
-    "atlas_token": ""
+    "disk_size": "20480"
   },
 
   "builders": [
     {   
-      "name": "centos-{{user `artifact_version`}}",
+      "name": "centos-{{user `redhat_release`}}",
       "type": "virtualbox-iso",
       "vm_name": "packer-centos-vm",
 
@@ -26,7 +24,6 @@
 
       "iso_url": "{{user `iso_url`}}",
       "iso_checksum": "{{user `iso_checksum`}}",
-      "iso_checksum_type": "{{user `iso_checksum_type`}}",
       "guest_additions_path": "VBoxGuestAdditions.iso",
 
       "boot_command": [
@@ -58,28 +55,16 @@
         "--description", "{{user `artifact_description`}}",
         "--version", "{{user `artifact_version`}}"
       ]
+
     }
   ], 
   
   "post-processors": [
-    [
-      {
-        "type": "vagrant",
-        "keep_input_artifact": false
-      },
-      {
-        "type": "atlas",
-        "token": "{{user `atlas_token`}}",
-        "artifact": "sbeliakou/centos-{{user `redhat_release`}}-{{user `redhat_platform`}}-minimal",
-        "artifact_type": "vagrant.box",
-        "only": ["centos-{{user `artifact_version`}}"],
-        "metadata": {
-          "description": "{{user `artifact_description`}}",
-          "version": "{{user `artifact_version`}}",
-          "provider": "virtualbox"
-        }
-      }
-    ]
+    {
+      "output": "sbeliakou-vagrant-centos-{{user `redhat_release`}}-{{user `redhat_platform`}}-minimal.box",
+      "compression_level": "6",
+      "type": "vagrant"
+    }
   ],
   
   "provisioners": [
@@ -90,7 +75,7 @@
       "expect_disconnect": true,
       "pause_before": "5s",
       "override": {
-        "centos-{{user `artifact_version`}}": {
+        "centos-{{user `redhat_release`}}": {
           "scripts": [
             "scripts/base.sh",
             "scripts/vagrant.sh",

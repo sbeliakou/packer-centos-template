@@ -8,16 +8,9 @@ Packer:
 - [Download Binaries](https://releases.hashicorp.com/packer/)
 - [Releases Changelog](https://github.com/hashicorp/packer/blob/v1.0.0/CHANGELOG.md)
 - [Documentation](https://www.packer.io/docs/index.html)
-- [Atlas Boxes API](https://atlas.hashicorp.com/help/api/vagrant/boxes)
 
 Provided Templates have been tested with following versions of Packer:
-- [v1.3.4](https://releases.hashicorp.com/packer/1.3.4/)
-- [v1.2.5](https://releases.hashicorp.com/packer/1.2.5/)
-- [v1.1.3](https://releases.hashicorp.com/packer/1.1.1/)
-- [v1.1.1](https://releases.hashicorp.com/packer/1.1.1/)
-- [v1.0.0](https://releases.hashicorp.com/packer/1.0.0/)
-- [v0.12.3](https://releases.hashicorp.com/packer/0.12.3/)
-- [v0.8.6](https://releases.hashicorp.com/packer/0.8.6/)
+- [v1.6.0](https://releases.hashicorp.com/packer/1.6.0/)
 
 CentOS Releases Details:
 --------------
@@ -25,6 +18,7 @@ CentOS Releases Details:
 
 Build | Release Version |
 | --| :--: |
+7 (2003) | 7.8
 7 (1810) | 7.6
 7 (1804) | 7.5
 7 (1708) | 7.4
@@ -35,6 +29,7 @@ Build | Release Version |
 
 Templates Variables Files:
 --------------
+- [CentOS 7.8 (2003)](vars/centos-7.8.2003.json)
 - [CentOS 7.6 (1810)](vars/centos-7.6.1810.json)
 - [CentOS 7.5 (1804)](vars/centos-7.5.1804.json)
 - [CentOS 7.4 (1708)](vars/centos-7.4.1708.json)
@@ -45,8 +40,7 @@ Templates Variables Files:
 
 CentOS Packer Templates:
 --------------
-- [vagrant-centos-atlas.json](vagrant-centos-atlas.json)
-- [vagrant-centos-local.json](vagrant-centos-local.json)
+- [vagrant-centos.json](vagrant-centos.json)
 
 Building with Packer for Local Usage
 --------------
@@ -54,18 +48,19 @@ Building with Packer for Local Usage
 Baking:
 ```bash
 $ make last
-
-$ packer build -var-file vars/centos-7.6.1810.json vagrant-centos-local.json
-$ packer build -var-file vars/centos-7.5.1804.json vagrant-centos-local.json
-$ packer build -var-file vars/centos-7.4.1708.json vagrant-centos-local.json
-$ packer build -var-file vars/centos-7.3.1611.json vagrant-centos-local.json
-$ packer build -var-file vars/centos-7.2.1511.json vagrant-centos-local.json
-$ packer build -var-file vars/centos-6.9.json vagrant-centos-local.json
-$ packer build -var-file vars/centos-6.8.json vagrant-centos-local.json
+$ packer build -var-file vars/centos-7.8.2003.json vagrant-centos.json
+$ packer build -var-file vars/centos-7.6.1810.json vagrant-centos.json
+$ packer build -var-file vars/centos-7.5.1804.json vagrant-centos.json
+$ packer build -var-file vars/centos-7.4.1708.json vagrant-centos.json
+$ packer build -var-file vars/centos-7.3.1611.json vagrant-centos.json
+$ packer build -var-file vars/centos-7.2.1511.json vagrant-centos.json
+$ packer build -var-file vars/centos-6.9.json vagrant-centos.json
+$ packer build -var-file vars/centos-6.8.json vagrant-centos.json
 ```
 
 Local Import:
 ```bash
+$ vagrant box add 'sbeliakou/centos-7.8-x86_64-minimal' sbeliakou-vagrant-centos-7.8-x86_64-minimal.box
 $ vagrant box add 'sbeliakou/centos-7.6-x86_64-minimal' sbeliakou-vagrant-centos-7.6-x86_64-minimal.box
 $ vagrant box add 'sbeliakou/centos-7.5-x86_64-minimal' sbeliakou-vagrant-centos-7.5-x86_64-minimal.box
 $ vagrant box add 'sbeliakou/centos-7.4-x86_64-minimal' sbeliakou-vagrant-centos-7.4-x86_64-minimal.box
@@ -101,7 +96,7 @@ Vagrantfile Samples
 
 Vagrant.configure("2") do |config|
   config.vm.box = "sbeliakou/centos"
-  config.vm.box_version = "7.6"
+  config.vm.box_version = "7.8.20200725"
 end
 ```
 </p></details>
