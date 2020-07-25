@@ -8,7 +8,14 @@ help:
 	@grep -E '^[a-zA-Z_0-9.-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-30s\033[0m %s\n", $$1, $$2}'
 	@echo
 
-last: 7.8   ## Build Latest CentOS (7.6)
+last: 7.8   ## Build Latest CentOS (7.8)
+
+8: 8.2   ## Build Latest CentOS 8 (8.2)
+
+8.2:     ## Build CentOS 8.2
+	@packer build -var-file vars/centos-8.2.2004.json vagrant-centos-8.json
+
+7: 7.8   ## Build Latest CentOS 7 (7.8)
 
 7.8:     ## Build CentOS 7.8
 	@packer build -var-file vars/centos-7.8.2003.json vagrant-centos.json
