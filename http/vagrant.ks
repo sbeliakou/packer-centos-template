@@ -27,13 +27,52 @@ autopart
 
 reboot
 
-%packages --nobase
+%packages --nobase --excludedocs
 @Core
 openssh-clients
 openssh-server
+-aic94xx-firmware
+-iwl6000g2a-firmware
+-iwl2030-firmware
+-iwl100-firmware
+-iwl6000-firmware
+-iwl2000-firmware
+-libertas-sd8686-firmware
+-ivtv-firmware
+-libertas-usb8388-firmware
+-iwl5000-firmware
+-alsa-firmware
+-iwl6000g2b-firmware
+-iwl7260-firmware
+-libertas-sd8787-firmware
+-iwl6050-firmware
+-iwl135-firmware
+-iwl105-firmware
+-iwl1000-firmware
+-iwl5150-firmware
+-iwl4965-firmware
+-iwl3160-firmware
+-iwl3945-firmware
+-alsa-tools-firmware
+-alsa-lib
+-btrfs-progs
+-cronie-anacron
+-cronie
+-crontabs
+-kexec-tools
+-plymouth-scripts
+-ModemManager-glib
+-NetworkManager
+-NetworkManager-glib
+-NetworkManager-tui
+-postfix
+-wpa_supplicant
 %end
 
-%post --log=/root/post_install.log
+%post --log=/var/log/post_install.log
+rm -f /etc/sysconfig/network-scripts/ifcfg-enp0*
+echo "LESSCHARSET=UTF-8" >> /etc/environment
+echo "LC_ALL=en_US.UTF-8" >> /etc/environment
 
 # Add vagrant to sudoers
 cat > /etc/sudoers.d/vagrant << EOF_sudoers_vagrant

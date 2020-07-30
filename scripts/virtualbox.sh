@@ -2,21 +2,11 @@
 
 echo "debug: Executing scripts/virtualbox.sh"
 
-uname -a
+yum install -y install gcc make gcc-c++ kernel-devel-$(uname -r) kernel-headers-$(uname -r) perl wget bzip2 tree man
 
+VBOX_VERSION_LATEST=$(curl -s https://download.virtualbox.org/virtualbox/LATEST.TXT)
+wget -O /home/vagrant/VBoxGuestAdditions.iso https://download.virtualbox.org/virtualbox/${VBOX_VERSION_LATEST}/VBoxGuestAdditions_${VBOX_VERSION_LATEST}.iso 
 mount -o loop /home/vagrant/VBoxGuestAdditions.iso /mnt
 sh /mnt/VBoxLinuxAdditions.run
-rc=$?
-rc=0
 
-umount /mnt
-rm -rf /home/vagrant/VBoxGuestAdditions.iso
-
-if [ $rc -ne 0 ]
-then
-    [ -f /var/log/VBoxGuestAdditions.log ] && cat /var/log/VBoxGuestAdditions.log
-    exit $rc
-else
-    echo "Virtualbox guest addons have been installed successfully"
-    exit 0
-fi
+modprobe vboxguest || exit 1
